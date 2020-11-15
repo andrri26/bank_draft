@@ -1,0 +1,15 @@
+{% set title, page, page_categorie = 'New cheque', 'cheque_new', 'cheque' %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title|trans }}{% endblock %}
+{% block title_h1 %}{{ title|trans }}{% endblock %}
+
+{% block body %}
+<div class="card shadow mb-4">
+    <div class="card-body">
+    {{ include('cheque/_form.html.twig') }}
+    <a href="{{ path('cheque_index') }}">{% trans %}back to list{% endtrans %}</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% set title, page, page_categorie = '404', '404', '404' %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <div class="error mx-auto" data-text="404">{{ title }}</div>
+        <p class="lead text-gray-800 mb-5">{% trans %}Not Found{% endtrans %}</p>
+        <p class="text-gray-500 mb-0">{% trans %}It looks like you found a glitch in the matrix...{% endtrans %}</p>
+        <a href="{{ path('app') }}">{% trans %}← Back to Dashboard{% endtrans %}</a>
+    </div>
+{% endblock %}

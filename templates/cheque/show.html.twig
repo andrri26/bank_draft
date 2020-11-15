@@ -1,0 +1,41 @@
+{% set title, page, page_categorie = 'Cheque', 'cheque_show', 'cheque' %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title|trans }}{% endblock %}
+{% block title_h1 %}{{ title|trans }}{% endblock %}
+
+{% block body %}
+<div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <td>{{ cheque.id }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Payement_date{% endtrans %}</th>
+                <td>{{ cheque.payementDate ? cheque.payementDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Number{% endtrans %}</th>
+                <td>{{ cheque.number }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Description{% endtrans %}</th>
+                <td>{{ cheque.description }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Bank{% endtrans %}</th>
+                <td>{{ cheque.bank | bank }}</td>
+            </tr>
+        </tbody>
+    </table>
+        <a class="btn btn-primary mb-3" href="{{ path('cheque_edit', {'id': cheque.id}) }}">{% trans %}Edit{% endtrans %}</a>
+        <br>
+        <a href="{{ path('cheque_index') }}">{% trans %}back to list{% endtrans %}</a>
+    {{ include('cheque/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

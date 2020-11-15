@@ -1,0 +1,47 @@
+{% set title, page, page_categorie = 'Cheques list', 'cheque_index', 'cheque' %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title|trans }}{% endblock %}
+{% block title_h1 %}{{ title|trans }}{% endblock %}
+
+{% block body %}
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans %}Id{% endtrans %}</th>
+                        <th>{% trans %}Payement_date{% endtrans %}</th>
+                        <th>{% trans %}Number{% endtrans %}</th>
+                        <th>{% trans %}Description{% endtrans %}</th>
+                        <th>{% trans %}Bank{% endtrans %}</th>
+                        <th>{% trans %}actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for cheque in cheques %}
+                    <tr>
+                        <td>{{ cheque.id }}</td>
+                        <td>{{ cheque.payementDate ? cheque.payementDate|date('Y-m-d') : '' }}</td>
+                        <td>{{ cheque.number }}</td>
+                        <td>{{ cheque.description }}</td>
+                        <td>{{ cheque.bank | bank }}</td>
+                        <td>
+                            <a class="btn btn-primary mb-1" href="{{ path('cheque_show', {'id': cheque.id}) }}"><i class="fas fa-external-link-alt"></i></a>
+                            <a class="btn btn-dark mb-1" href="{{ path('cheque_edit', {'id': cheque.id}) }}"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">{% trans %}no records found{% endtrans %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-primary" href="{{ path('cheque_new') }}">{% trans %}Create new{% endtrans %}</a>
+    </div>
+</div>
+{% endblock %}
